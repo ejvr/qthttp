@@ -256,9 +256,11 @@ public:
     }
 
     inline void clear() {
-        buffers.erase(buffers.begin() + 1, buffers.end());
-        buffers[0].resize(0);
-        buffers[0].squeeze();
+        if (!buffers.empty()) {
+            buffers.erase(buffers.begin() + 1, buffers.end());
+            buffers[0].resize(0);
+            buffers[0].squeeze();
+        }
 
         head = tail = 0;
         tailBuffer = 0;
